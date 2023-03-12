@@ -72,7 +72,7 @@ export default function RecordForm({values, setValues}) {
                             fullWidth: true,
                         }}
                         onChange={(e) => setValues({ ...values, 'login': e.target.value })}
-                        inputProps={{ "required": true, value: values.login }}
+                        inputProps={{ "required": true, value: values.login, autocomplete: false }}
                     />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={6}>
@@ -80,9 +80,10 @@ export default function RecordForm({values, setValues}) {
                         <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                         <Input
                             required
+                            autoComplete={false}
                             id="standard-adornment-password"
                             type={values.showPassword ? 'text' : 'password'}
-                            value={values.password}
+                            value={values.value}
                             onChange={(e) => setValues({ ...values, 'value': e.target.value })}
                             endAdornment={
                                 <InputAdornment position="end">

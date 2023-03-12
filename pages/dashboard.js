@@ -76,8 +76,9 @@ function Dashboard() {
           "Authorization": "Bearer " + cookies.get('jwtToken')
         }
       })
-      console.log(result.data)
-      setPasswords(result.data)
+      const data = result.data.map((item) => {
+        return {...item, login: item.record_login, value: item.record_value}})
+      setPasswords(data)
     } catch (e) {
       console.error(e)
     }
@@ -125,11 +126,11 @@ function Dashboard() {
           record: {
             "id": modalValues.record_id,
             "title": modalValues.title,
-            "login": modalValues.login,
+            "login": modalValues.login, 
             "value": modalValues.value,
             "website_address": modalValues.website_address,
             "comments": modalValues.comments,
-            "password_length": modalValues.value.length,
+            "password_length": modalValues.value?.length,
             "expiration_days": modalValues.expiration_days,
             "check_repetition": modalValues.check_repetition,
             "check_leak": modalValues.check_leak
